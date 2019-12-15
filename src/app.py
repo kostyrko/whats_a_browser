@@ -3,10 +3,10 @@ __author__ = 'jslvtr'
 import requests
 from bs4 import BeautifulSoup
 
-r = requests.get("http://www.johnlewis.com/store/john-lewis-wade-office-chair-black/p447855")
+r = requests.get("https://www.johnlewis.com/house-by-john-lewis-hinton-office-chair/black/p4201464")
 soup = BeautifulSoup(r.content, "html.parser")
-element = soup.find("span", {"itemprop": "price", "class": "now-price"})
-string_value = element.text.strip() #"£115.00"
+element = soup.find("p", {"class":"price price--large"})
+string_value = element.text.strip() #"£129.00"
 
 price = float(string_value[1:])
 
@@ -17,4 +17,4 @@ elif price == 100:
 else:
     print("Definitely don't buy.")
 
-# <span itemprop="price" class="now-price"> £115.00 </span>
+# <p class="price price--large">£129.00</p>
